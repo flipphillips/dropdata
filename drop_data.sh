@@ -27,7 +27,9 @@ if [ -z $2 ]; then
     exit 1
 fi
 
-BID_ID=`grep -E "^${BID_NAME}\\ " /etc/drop_data.conf | xargs | cut -d' ' -f2`
+if [ -f /etc/drop_data.conf ]; then
+    BID_ID=`grep -E "^${BID_NAME}\\ " /etc/drop_data.conf | xargs | cut -d' ' -f2`
+fi
 
 if [ -z $BID_ID ]; then
     BID=$BID_NAME;
