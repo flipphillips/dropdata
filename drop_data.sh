@@ -12,6 +12,7 @@
 #   avg - send average
 #   no value: send latest value
 
+WGET=/usr/local/bin/wget
 
 DROPDIR="/tmp/drop_data"
 mkdir $DROPDIR 2> /dev/null
@@ -48,7 +49,7 @@ if [ $2 != "--send" ]; then
     exit
 fi
 
-if wget --help | grep -q secure; then
+if $WGET --help | grep -q secure; then
     DDURL="https://datadrop.wolframcloud.com/api/v1.0/Add?bin=$BID"
 else
     DDURL="http://datadrop.wolframcloud.com/api/v1.0/Add?bin=$BID"
@@ -91,4 +92,4 @@ done
 
 echo "Dropping data with $DDURL"
 rm -rf $DROPDIR/$BID
-wget -T 30 -t 5 $DDURL -q -O -
+$WGET -T 30 -t 5 "$DDURL" -q -O -
