@@ -14,17 +14,17 @@
 
 WGET=/usr/local/bin/wget
 
-DROPDIR="/tmp/drop_data"
+DROPDIR="/tmp/drop_data/$UID"
 mkdir $DROPDIR 2> /dev/null
 
 BID_NAME=$1
 if [ -z $BID_NAME ]; then
-    echo "can not continue"
+    echo "Missing DatabinID"
     exit 1
 fi
 
 if [ -z $2 ]; then
-    echo "invalid invocation"
+    echo "Missing key"
     exit 1
 fi
 
